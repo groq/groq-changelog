@@ -1,5 +1,33 @@
 # Groq Changelog
 
+
+## 2025-04-21 (Python SDK v0.22.0, TypeScript SDK v0.19.0)
+
+### [ADDED] Compound Beta and Compound Beta Mini Systems
+
+Compound Beta and Compound Beta Mini are agentic tool systems with web search and code execution built in. These systems simplify your workflow when interacting with realtime data and eliminate the need to add your own tools to search the web. Read more about [agentic tooling on Groq](https://console.groq.com/docs/agentic-tooling), or start using them today by switching to `compound-beta` or `compound-beta-mini`.
+
+**Performance:**
+- Compound Beta (`compound-beta`): 350 tokens per second (TPS) with a latency of ~4,900 ms
+- Compound Beta Mini (`compound-beta-mini`): 275 TPS with a latency of ~1,600 ms
+
+**Example Usage:**
+```curl
+curl "https://api.groq.com/openai/v1/chat/completions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${GROQ_API_KEY}" \
+  -d '{
+         "messages": [
+           {
+             "role": "user",
+             "content": "what happened in ai this week?"
+           }
+         ],
+         "model": "compound-beta",
+       }'
+```
+
 ## 2025-04-14 (Python SDK v0.22.0, TypeScript SDK v0.19.0)
 
 ### [ADDED] Meta Llama 4 Support
