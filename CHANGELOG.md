@@ -8,10 +8,19 @@ The Python SDK has been updated to v0.23.0 and the Typescript SDK has been updat
 
 **Key Changes:**
 
- - `groq.files.content` returns a `Response` object now to allow parsing as text (for `jsonl` files) or blob for generic file types
- - `BatchCreateParams` now accepts a `string` as input to `completion_window` to allow for time frames between `24h` and `7d`.
+ - `groq.files.content` returns a `Response` object now to allow parsing as text (for `jsonl` files) or blob for generic file types. Previously, the return type as a JSON object was incorrect, and this caused the SDK to encounter an error instead of returning the file's contents. Example usage in Typescript:
+
+```ts
+const response = await groq.files.content("file_XXXX");
+const file_text = await response.text();
+```
+
+ - `BatchCreateParams` now accepts a `string` as input to `completion_window` to allow for durations between `24h` and `7d`. Using a longer completion window gives your batch job a greater chance of completing successfully without timing out. For larger batch requests, it's recommended to split them up into multiple batch jobs. [Learn more about best practices for batch processing](https://console.groq.com/docs/batch).
  - Updated chat completion `model` parameter to remove deprecated models and add newer production models.
- - Added optional chat completion `metadata` parameter for better compatibility.
+   - Removed: `gemma-7b-it` and `mixtral-8x7b-32768`.
+   - Added: `gemma2-9b-it`, `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, and `llama-guard-3-8b`.
+   - For the most up-to-date information on Groq's models, see the [models page](https://console.groq.com/docs/models), or learn more about our [deprecations policy](https://console.groq.com/docs/deprecations).
+ - Added optional chat completion `metadata` parameter for better compatibility with OpenAI chat completion API. [Learn more about switching from OpenAI to Groq](https://console.groq.com/docs/openai).
 
 ## 2025-04-21 (Python SDK v0.22.0, TypeScript SDK v0.19.0)
 
