@@ -1,5 +1,42 @@
 # Groq Changelog
 
+## 2025-05-08 (Python SDK v0.24.0, TypeScript SDK v0.21.0)
+
+### [ADDED] Compound Beta Search Settings
+
+Groq's Compound Beta and Compound Beta Mini agentic tool systems now support domain-based search filtering through two new parameters: `exclude_domains` and `include_domains`. 
+
+ - `exclude_domains` allows you to specify domains that should be omitted from web search results.
+ - `include_domains` lets you limit web searches to only return results from specified domains.
+
+Example usage to exclude Wikipedia from searches:
+
+```sh
+curl "https://api.groq.com/openai/v1/chat/completions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${GROQ_API_KEY}" \
+  -d '{
+         "messages": [
+           {
+             "role": "user",
+             "content": "Tell me about the history of Bonsai trees in America"
+           }
+         ],
+         "model": "compound-beta-mini",
+         "exclude_domains": ["wikipedia.org"]
+       }'
+```
+
+[Learn more about search settings in our docs](https://console.groq.com/docs/agentic-tooling#search-settings), including [advanced usage with domain wildcards](https://console.groq.com/docs/agentic-tooling#domain-filtering-with-wildcards).
+
+### [CHANGED] Python SDK v0.24.0, TypeScript SDK v0.21.0
+
+The Python SDK has been updated to v0.24.0 and the Typescript SDK has been updated to v0.21.0.
+
+**Key Changes:**
+ - Added support for domain filtering in Compound Beta [search settings](https://console.groq.com/docs/agentic-tooling#search-settings). Use `include_domains` to restrict searches to specific domains, or `exclude_domains` to omit results from certain domains when using [`compound-beta`](https://console.groq.com/docs/agentic-tooling/compound-beta) or [`compound-beta-mini`](https://console.groq.com/docs/agentic-tooling/compound-beta-mini) models.
+
 ## 2025-04-23 (Python SDK v0.23.0, TypeScript SDK v0.20.0)
 
 ### [CHANGED] Python SDK v0.23.0, TypeScript SDK v0.20.0
