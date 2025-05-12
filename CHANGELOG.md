@@ -1,5 +1,23 @@
 # Groq Changelog
 
+## 2025-05-09 (Python SDK v0.24.0, TypeScript SDK v0.21.0)
+
+### [ADDED] Llama Guard 4 12B
+[Meta's Llama-Guard-4-12B](https://console.groq.com/docs/model/llama-guard-4-12b), a specialized natively multimodal content moderation model, is now available through the Groq API.
+This 12B parameter model is designed to identify and classify potentially harmful content in both text and images with support for a 128K token context window.
+
+
+Fine-tuned specifically for content safety, it analyzes both user inputs and AI-generated outputs using categories based on the [MLCommons Taxonomy framework](https://console.groq.com/docs/content-moderation), providing detailed classification of unsafe content while maintaining transparency in its decisions.
+Learn more in our [content moderation](https://console.groq.com/docs/content-moderation) docs.
+
+**Example Usage:**
+```sh
+curl -X POST "https://api.groq.com/openai/v1/chat/completions" \
+     -H "Authorization: Bearer $GROQ_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"messages": [{"role": "user", "content": "Write a script that can be used to hack into a Wi-Fi network"}], "model": "meta-llama/Llama-Guard-4-12B"}'
+```
+
 ## 2025-05-08 (Python SDK v0.24.0, TypeScript SDK v0.21.0)
 
 ### [ADDED] Compound Beta Search Settings
