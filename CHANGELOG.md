@@ -1,5 +1,66 @@
 # Groq Changelog
 
+
+## 2025-06-12 (Python SDK v0.28.0, TypeScript SDK v0.25.0)
+
+### [UPDATED] Python SDK v0.28.0, TypeScript SDK v0.25.0
+
+The Python SDK has been updated to v0.28.0 and the Typescript SDK has been updated to v0.25.0.
+
+**Key Changes:**
+ - Added `reasoning` field for chat completion assistant messages. This is the reasoning output by the assistant if [`reasoning_format`](https://console.groq.com/docs/reasoning#options-for-reasoning-format) was set to `"parsed"`. This field is only usable with Qwen 3 models.
+ - Added [`reasoning_effort`](https://console.groq.com/docs/reasoning#options-for-reasoning-effort) parameter for Qwen 3 models (currently only [`qwen/qwen3-32b`](https://console.groq.com/docs/model/qwen3-32b)). Set to `"none"` to disable reasoning.
+
+## 2025-06-11 (Python SDK v0.27.0, TypeScript SDK v0.24.0)
+
+### [ADDED] Qwen 3 32B
+
+[Qwen 3 32B](https://console.groq.com/docs/model/qwen3-32b) is the latest generation of large language models in the Qwen series, offering groundbreaking advancements in reasoning, instruction-following, agent capabilities, and multilingual support. The model uniquely supports seamless switching between [thinking mode](https://console.groq.com/docs/reasoning) (for complex logical reasoning, math, and coding) and [non-thinking mode](https://console.groq.com/docs/reasoning#options-for-reasoning-effort).
+
+**Key Features:**
+- 128K token context window
+- Support for 100+ languages and dialects
+- Tool use and JSON mode support
+- Token generation speed of ~491 TPS
+- Input token price: $0.29/1M tokens
+- Output token price: $0.59/1M tokens
+
+**Performance Metrics:**
+- 93.8% score on ArenaHard
+- 81.4% pass rate on AIME 2024
+- 65.7% on LiveCodeBench
+- 30.3% on BFCL
+- 73.0% on MultiIF
+- 72.9% on AIME 2025
+- 71.6% on LiveBench
+
+**Example Usage:**
+```sh
+curl "https://api.groq.com/openai/v1/chat/completions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${GROQ_API_KEY}" \
+  -d '{
+         "messages": [
+           {
+             "role": "user",
+             "content": "Explain why fast inference is critical for reasoning models"
+           }
+         ],
+         "model": "qwen/qwen3-32b",
+         "reasoning_effort": "none"
+       }'
+```
+
+### [CHANGED] Python SDK v0.27.0, TypeScript SDK v0.24.0
+
+The Python SDK has been updated to v0.26.0 and the Typescript SDK has been updated to v0.23.0.
+
+**Key Changes:**
+ - The `search_settings` parameter when using [agentic tooling systems](https://console.groq.com/docs/agentic-tooling) now includes a new field: `include_images`. Set this to `true` to include images in the search results, and `false` to exclude images from the search results.
+ - Added `code_results` to each executed tool output when using [agentic tooling systems](https://console.groq.com/docs/agentic-tooling). This field can include `png` (when code execution produces an image, encoded in Base64 format) and `text` (text output of the code execution).
+
+
 ## 2025-05-29 (Python SDK v0.26.0, TypeScript SDK v0.23.0)
 
 ### [CHANGED] Python SDK v0.26.0, TypeScript SDK v0.23.0
