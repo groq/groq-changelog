@@ -1,9 +1,19 @@
 # Groq Changelog
 
 
+## 2025-06-25 (Python SDK v0.29.0, TypeScript SDK v0.26.0)
+
+### [CHANGED] Python SDK v0.29.0, TypeScript SDK v0.26.0
+
+The Python SDK has been updated to v0.29.0 and the Typescript SDK has been updated to v0.26.0.
+
+**Key Changes:**
+ - Added `country` field to the `search_settings` parameter for [agentic tool systems](https://console.groq.com/docs/agentic-tooling) ([`compound-beta`](https://console.groq.com/docs/agentic-tooling/compound-beta) and [`compound-beta-mini`](https://console.groq.com/docs/agentic-tooling/compound-beta-mini)). This new parameter allows you to prioritize search results from a specific country. For a full list of supported countries, see the [Agentic Tooling documentation](https://console.groq.com/docs/agentic-tooling#search-settings).
+
+
 ## 2025-06-12 (Python SDK v0.28.0, TypeScript SDK v0.25.0)
 
-### [UPDATED] Python SDK v0.28.0, TypeScript SDK v0.25.0
+### [CHANGED] Python SDK v0.28.0, TypeScript SDK v0.25.0
 
 The Python SDK has been updated to v0.28.0 and the Typescript SDK has been updated to v0.25.0.
 
