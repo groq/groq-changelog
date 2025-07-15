@@ -1,5 +1,48 @@
 # Groq Changelog
 
+## 2025-07-15 (Python SDK v0.30.0, TypeScript SDK v0.27.0)
+
+### [CHANGED] Python SDK v0.30.0, TypeScript SDK v0.27.0
+
+The Python SDK has been updated to v0.30.0 and the Typescript SDK has been updated to v0.27.0.
+
+**Key Changes:**
+ - Improved chat completion message type definitions for better compatibility with OpenAI. This fixes errors in certain cases with different message formats.
+
+### [ADDED] Moonshot AI Kimi 2 Instruct
+
+[Kimi K2 Instruct](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct) is Moonshot AI's state-of-the-art Mixture-of-Experts (MoE) language model with 1 trillion total parameters and 32 billion activated parameters. Designed for agentic intelligence, it excels at tool use, coding, and autonomous problem-solving across diverse domains.
+
+Kimi K2 Instruct is perfect for agentic use cases and coding. [Learn more about how to use tools here.](https://console.groq.com/docs/tool-use)
+
+**Key Features:**
+- 131K token context window
+- 16K max output tokens
+- MoE architecture with 384 experts (8 selected per token)
+- Surpasses GPT-4.1 on agentic and coding use cases
+
+**Performance Metrics:**
+- 53.7% Pass@1 on LiveCodeBench (coding performance)
+- 65.8% single-attempt accuracy on SWE-bench Verified
+- 89.5% exact match on MMLU
+- 70.6% Avg@4 on Tau2 retail tasks
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "moonshotai/kimi-k2-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain why fast inference is critical for reasoning models"
+      }
+    ]
+  }'
+```
+
 
 ## 2025-06-25 (Python SDK v0.29.0, TypeScript SDK v0.26.0)
 
