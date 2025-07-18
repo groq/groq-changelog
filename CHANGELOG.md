@@ -4,17 +4,18 @@
 
 ### [ADDED] Structured Outputs
 
-Groq now supports [structured outputs](https://console.groq.com/docs/structured-outputs) with JSON schema output on certain models. This feature guarantees your model responses strictly conform to your provided [JSON Schema](https://json-schema.org/overview/what-is-jsonschema), ensuring reliable data structures without missing fields or invalid values. Structured outputs eliminate the need for complex parsing logic and reduce errors from malformed JSON responses.
+Groq now supports [structured outputs](https://console.groq.com/docs/structured-outputs) with JSON schema output for the following models: 
+ - [`moonshotai/kimi-k2-instruct`](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct)
+ - [`meta-llama/llama-4-maverick-17b-128e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-maverick-17b-128e-instruct)
+ - [`meta-llama/llama-4-scout-17b-16e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-scout-17b-16e-instruct)
+ 
+This feature guarantees your model responses strictly conform to your provided [JSON Schema](https://json-schema.org/overview/what-is-jsonschema), ensuring reliable data structures without missing fields or invalid values. Structured outputs eliminate the need for complex parsing logic and reduce errors from malformed JSON responses.
 
 **Key Benefits:**
 - **Guaranteed Compliance**: Responses always match your exact schema specifications
 - **Type Safety**: Eliminates parsing errors and unexpected data types
 - **Developer Experience**: No need to prompt engineer for format adherence
 
-**Supported Models:**
- - [`moonshotai/kimi-k2-instruct`](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct)
- - [`meta-llama/llama-4-maverick-17b-128e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-maverick-17b-128e-instruct)
- - [`meta-llama/llama-4-scout-17b-16e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-scout-17b-16e-instruct)
 
 **Example Usage:**
 ```curl
