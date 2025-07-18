@@ -1,5 +1,85 @@
 # Groq Changelog
 
+## 2025-07-18 (Python SDK v0.30.0, TypeScript SDK v0.27.0)
+
+### [ADDED] Structured Outputs
+
+Groq now supports [structured outputs](https://console.groq.com/docs/structured-outputs) with JSON schema output on certain models. This feature guarantees your model responses strictly conform to your provided [JSON Schema](https://json-schema.org/overview/what-is-jsonschema), ensuring reliable data structures without missing fields or invalid values. Structured outputs eliminate the need for complex parsing logic and reduce errors from malformed JSON responses.
+
+**Key Benefits:**
+- **Guaranteed Compliance**: Responses always match your exact schema specifications
+- **Type Safety**: Eliminates parsing errors and unexpected data types
+- **Developer Experience**: No need to prompt engineer for format adherence
+
+**Supported Models:**
+ - [`moonshotai/kimi-k2-instruct`](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct)
+ - [`meta-llama/llama-4-maverick-17b-128e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-maverick-17b-128e-instruct)
+ - [`meta-llama/llama-4-scout-17b-16e-instruct`](https://console.groq.com/docs/model/meta-llama/llama-4-scout-17b-16e-instruct)
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "moonshotai/kimi-k2-instruct",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Extract product review information from the text."
+      },
+      {
+        "role": "user",
+        "content": "I bought the UltraSound Headphones last week and I'\''m really impressed! The noise cancellation is amazing and the battery lasts all day. Sound quality is crisp and clear. I'\''d give it 4.5 out of 5 stars."
+      }
+    ],
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "product_review",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "product_name": { 
+              "type": "string",
+              "description": "Name of the product being reviewed"
+            },
+            "rating": { 
+              "type": "number",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Rating score from 1 to 5"
+            },
+            "sentiment": { 
+              "type": "string",
+              "enum": ["positive", "negative", "neutral"],
+              "description": "Overall sentiment of the review"
+            },
+            "key_features": { 
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "List of product features mentioned"
+            },
+            "pros": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Positive aspects mentioned in the review"
+            },
+            "cons": {
+              "type": "array", 
+              "items": { "type": "string" },
+              "description": "Negative aspects mentioned in the review"
+            }
+          },
+          "required": ["product_name", "rating", "sentiment", "key_features"],
+          "additionalProperties": false
+        }
+      }
+    }
+  }'
+```
+
+
 ## 2025-07-15 (Python SDK v0.30.0, TypeScript SDK v0.27.0)
 
 ### [CHANGED] Python SDK v0.30.0, TypeScript SDK v0.27.0
