@@ -1,5 +1,73 @@
 # Groq Changelog
 
+## 2025-08-05 (Python SDK v0.31.0, TypeScript SDK v0.30.0)
+
+### [ADDED] OpenAI GPT-OSS 20B & OpenAI GPT-OSS 120B
+
+[GPT-OSS 20B](https://console.groq.com/docs/model/openai/gpt-oss-20b) and [GPT-OSS 120B](https://console.groq.com/docs/model/openai/gpt-oss-120b) are OpenAI's open-source state-of-the-art Mixture-of-Experts (MoE) language models that perform as well as their frontier o4-mini and o3-mini models. They have [reasoning](https://console.groq.com/docs/reasoning) capabilities, built-in [browser search](https://console.groq.com/docs/browser-search) and [code execution](https://console.groq.com/docs/code-execution), and support for [structured outputs](https://console.groq.com/docs/structured-outputs). 
+
+**Key Features:**
+- 131K token context window
+- 32K max output tokens
+- Running at ~1000+ TPS and ~500+ TPS respectively
+- MoE architecture with 32 and 128 experts respectively
+- Surpasses OpenAI's o4-mini on many benchmarks
+- Built in [browser search](https://console.groq.com/docs/browser-search) and [code execution](https://console.groq.com/docs/code-execution)
+
+**Performance Metrics ([20B](https://console.groq.com/docs/model/openai/gpt-oss-20b)):**
+- 85.3% MMLU (General Reasoning)
+- 60.7% SWE-Bench Verified (Coding)
+- 98.7% AIME 2025 (Math with tools)
+- 75.7% average MMMLU (Multilingual)
+
+**Performance Metrics ([120B](https://console.groq.com/docs/model/openai/gpt-oss-120b)):**
+- 90.0% MMLU (General Reasoning)
+- 62.4% SWE-Bench Verified (Coding)
+- 57.6% HealthBench Realistic (Health)
+- 81.3% average MMMLU (Multilingual)
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai/gpt-oss-20b",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain why fast inference is critical for reasoning models"
+      }
+    ]
+  }'
+```
+
+### [ADDED] Responses API (Beta)
+
+[Groq's Responses API](https://console.groq.com/docs/responses-api) is fully compatible with OpenAI's Responses API, making it easy to integrate advanced conversational AI capabilities into your applications. The [Responses API](https://console.groq.com/docs/responses-api) supports both text and image inputs while producing text outputs, stateful conversations, and function calling to connect with external systems.
+
+This feature is in beta right now - please let us know your feedback on our [Community Forum](https://community.groq.com/)!
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -d '{
+    "model": "llama-3.3-70b-versatile",
+    "input": "Tell me a fun fact about the moon in one sentence."
+  }'
+```
+
+### [CHANGED] Python SDK v0.31.0, TypeScript SDK v0.30.0
+
+The Python SDK has been updated to v0.30.0 and the Typescript SDK has been updated to v0.27.0.
+
+**Key Changes:**
+ - Added support for `high`, `medium`, and `low` options for `reasoning_effort` when using GPT-OSS models to control their reasoning output. [Learn more about how to use these options to control reasoning tokens.](https://console.groq.com/docs/reasoning#reasoning-effort)
+ - Added support for [`browser_search`](https://console.groq.com/docs/browser-search) and [`code_interpreter`](https://console.groq.com/docs/code-execution) as function/tool definition types in the `tools` array in a chat completion request. Specify one or both of these as tools to allow GPT-OSS models to automatically call them on the server side when needed.
+ - Added an optional `include_reasoning` boolean option to chat completion requests to allow configuring if the model returns a response in a `reasoning` field or not. This option is not supported for GPT-OSS models.
+
 ## 2025-07-18 (Python SDK v0.30.0, TypeScript SDK v0.27.0)
 
 ### [ADDED] Structured Outputs
