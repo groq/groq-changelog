@@ -4,7 +4,7 @@
 
 ### [ADDED] OpenAI GPT-OSS 20B & OpenAI GPT-OSS 120B
 
-[GPT-OSS 20B](https://console.groq.com/docs/model/openai/gpt-oss-20b) and [GPT-OSS 120B](https://console.groq.com/docs/model/openai/gpt-oss-120b) are OpenAI's open-source state-of-the-art Mixture-of-Experts (MoE) language models with 20 billion and 120 billion total parameters. It has [reasoning](https://console.groq.com/docs/reasoning) capabilities, built in [browser search](https://console.groq.com/docs/browser-search) and [code execution](https://console.groq.com/docs/code-execution), and support for [structured outputs](https://console.groq.com/docs/structured-outputs). 
+[GPT-OSS 20B](https://console.groq.com/docs/model/openai/gpt-oss-20b) and [GPT-OSS 120B](https://console.groq.com/docs/model/openai/gpt-oss-120b) are OpenAI's open-source state-of-the-art Mixture-of-Experts (MoE) language models that perform as well as their frontier o4-mini and o3-mini models. They have [reasoning](https://console.groq.com/docs/reasoning) capabilities, built-in [browser search](https://console.groq.com/docs/browser-search) and [code execution](https://console.groq.com/docs/code-execution), and support for [structured outputs](https://console.groq.com/docs/structured-outputs). 
 
 **Key Features:**
 - 131K token context window
@@ -64,7 +64,7 @@ curl https://api.groq.com/openai/v1/responses \
 The Python SDK has been updated to v0.30.0 and the Typescript SDK has been updated to v0.27.0.
 
 **Key Changes:**
- - Added support for `high`, `medium`, and `low` options for `reasoning_effort` when using GPT-OSS models to control its reasoning amount. [Learn more about how to use these options to control reasoning tokens.](https://console.groq.com/docs/reasoning#reasoning-effort)
+ - Added support for `high`, `medium`, and `low` options for `reasoning_effort` when using GPT-OSS models to control their reasoning output. [Learn more about how to use these options to control reasoning tokens.](https://console.groq.com/docs/reasoning#reasoning-effort)
  - Added support for [`browser_search`](https://console.groq.com/docs/browser-search) and [`code_interpreter`](https://console.groq.com/docs/code-execution) as function/tool definition types in the `tools` array in a chat completion request. Specify one or both of these as tools to allow GPT-OSS models to automatically call them on the server side when needed.
  - Added an optional `include_reasoning` boolean option to chat completion requests to allow configuring if the model returns a response in a `reasoning` field or not. This option is not supported for GPT-OSS models.
 
