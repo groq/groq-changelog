@@ -1,5 +1,21 @@
 # Groq Changelog
 
+## 2025-08-20 (Python SDK v0.31.0, TypeScript SDK v0.30.0)
+
+### [ADDED] Prompt Caching
+
+Prompt caching automatically reuses computation from recent requests when they share a common prefix, delivering significant cost savings and improved response times while maintaining data privacy through volatile-only storage that expires automatically. 
+
+**How It Works**
+- Prefix Matching: When you send a request, the system examines and identifies matching prefixes from recently processed requests stored temporarily in volatile memory. Prefixes can include system prompts, tool definitions, few-shot examples, and more.
+- Cache Hit: If a matching prefix is found, cached computation is reused, dramatically reducing latency and token costs by 50% for cached portions.
+- Cache Miss: If no match exists, your prompt is processed normally, with the prefix temporarily cached for potential future matches.
+- Automatic Expiration: All cached data automatically expires within a few hours, which helps ensure privacy while maintaining the benefits.
+
+Prompt caching is rolling out to [Kimi K2](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct) starting today with support for additional models coming soon. This feature works automatically on all your API requests with no code changes required and no additional fees.
+
+[Learn more about prompt caching in our docs.](https://console.groq.com/docs/prompt-caching)
+
 ## 2025-08-05 (Python SDK v0.31.0, TypeScript SDK v0.30.0)
 
 ### [ADDED] OpenAI GPT-OSS 20B & OpenAI GPT-OSS 120B
