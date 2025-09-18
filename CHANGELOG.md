@@ -1,5 +1,82 @@
 # Groq Changelog
 
+
+## 2025-09-05 (Python SDK v0.31.1, TypeScript SDK v0.32.0)
+
+### [ADDED] Moonshot AI Kimi K2 Instruct 0905
+
+[Kimi K2-0905](https://console.groq.com/docs/model/moonshotai/kimi-k2-instruct-0905) brings Moonshot AI's cutting-edge model to GroqCloud with day zero support, delivering production-grade speed, low latency, and predictable cost for next-level agentic coding applications.
+
+This latest version delivers significant improvements over the original Kimi K2, including enhanced agentic coding capabilities that rival frontier closed models and much better frontend development performance. [Learn more about how to use tools here.](https://console.groq.com/docs/tool-use)
+
+**Key Features:**
+- **256K context window** - The largest context window of any model on GroqCloud to date
+- **Prompt caching** - Up to 50% cost savings on cached tokens with dramatically faster response times
+- **Leading price-to-performance** - 200+ t/s at $1.50/M tokens blended ($1.00/M input; $3.00/M output)
+- **Improved agentic coding** - More reliable code generation, especially for complex multi-turn interactions
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "moonshotai/kimi-k2-instruct-0905",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain why fast inference is critical for reasoning models"
+      }
+    ]
+  }'
+```
+
+
+## 2025-09-04 (Python SDK v0.31.1, TypeScript SDK v0.32.0)
+
+### [ADDED] Groq Compound and Compound Mini
+
+[Compound](https://console.groq.com/docs/compound/systems/compound) (`groq/compound`) and [Compound Mini](https://console.groq.com/docs/compound/systems/compound-mini) (`groq/compound-mini`) are Groq's production-ready agentic AI systems that integrate web search, code execution, and browser automation into a single API call. Moving from beta to general availability, these systems deliver frontier-level performance with leading quality, low latency, and cost efficiency for autonomous agent applications.
+
+Built on OpenAI's GPT-OSS-120B and Meta's Llama models, Compound delivers ~25% higher accuracy and ~50% fewer mistakes across benchmarks, surpassing OpenAI's Web Search Preview and Perplexity Sonar. [Learn more about agentic tooling here.](https://console.groq.com/docs/compound)
+
+**Key Features:**
+- **Built-in server-side tools** - [Web search](https://console.groq.com/docs/web-search), [code execution](https://console.groq.com/docs/code-execution), [Wolfram Alpha](https://console.groq.com/docs/wolfram-alpha), and [parallel browser automation](https://console.groq.com/docs/browser-automation)
+- **Production-grade stability** - General availability with increased rate limits and reliability
+- **Frontier performance** - Outperforms competing systems on SimpleQA and RealtimeEval benchmarks
+- **Single API call** - No client-side orchestration required for complex agentic workflows
+
+**Enhanced Capabilities:**
+- [Parallel browser automation](https://console.groq.com/docs/browser-automation) (up to 10 browsers simultaneously)
+- Advanced search with richer context extraction from web results
+- [Wolfram Alpha integration](https://console.groq.com/docs/wolfram-alpha) for precise mathematical and scientific computations
+- Enhanced markdown rendering for structured outputs and better downstream consumption
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "groq/compound",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Research the latest developments in AI inference optimization and summarize key findings"
+      }
+    ]
+  }'
+```
+
+
+### [CHANGED] Python SDK v0.31.1, TypeScript SDK v0.32.0
+
+The Python SDK has been updated to v0.31.1 and the Typescript SDK has been updated to v0.32.0.
+
+**Key Changes:**
+ - Improved chat completion message type definitions for better compatibility with OpenAI. This fixes errors in certain cases with different message formats.
+ - Added support for new types of Groq Compound tools ([Wolfram Alpha](https://console.groq.com/docs/wolfram-alpha), [Browser Automation](https://console.groq.com/docs/browser-automation), [Visit Website](https://console.groq.com/docs/visit-website))
+
 ## 2025-08-20 (Python SDK v0.31.0, TypeScript SDK v0.30.0)
 
 ### [ADDED] Prompt Caching
