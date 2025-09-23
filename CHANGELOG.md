@@ -1,6 +1,63 @@
 # Groq Changelog
 
 
+## 2025-09-23 (Python SDK v0.31.1, TypeScript SDK v0.32.0)
+
+### [ADDED] Remote Model Context Protocol (MCP)
+
+Remote Model Context Protocol (MCP) server integration is now available in Beta on GroqCloud, connecting AI models to thousands of external tools through Anthropic's open MCP standard. Developers can connect any remote MCP server to models hosted on GroqCloud, enabling faster, lower-cost AI applications with tool capabilities.
+
+Groq's implementation is fully compatible with both the OpenAI Responses API and OpenAI remote MCP specification, allowing developers to switch from OpenAI to Groq with zero code changes while benefiting from Groq's speed and predictable costs.
+
+**Why Remote MCP Matters:**
+- **Universal interface** - Connect to thousands of remote MCP servers and tools through one open standard
+- **Faster execution** - Lower round-trip latency than alternatives
+- **Lower costs** - Same experiences at a fraction of the price
+- **Seamless migration** - Keep your connector code, just change the endpoint
+
+**Supported Models:**
+Remote MCP is available on all models that support [tool use](https://console.groq.com/docs/tool-use), such as:
+- GPT-OSS-120B and GPT-OSS-20B
+- Kimi K2 0905
+- Qwen 3 32B
+- Llama 4 Maverick and Llama 4 Scout
+- Llama 3.3 70B and Llama 3.1 8B
+
+**Cookbook Partners:**
+Get started with ready-to-use tutorials from our MCP partners:
+
+- [BrowserBase MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-browserbase): Web automation using natural language commands
+- [Browser Use MCP](https://github.com/groq/groq-api-cookbook/tree/main/tutorials/mcp-browseruse): Autonomous website browsing and interaction
+- [Exa MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-exa): Real-time web search and crawling
+- [Firecrawl MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-firecrawl): Enterprise-grade web scraping capabilities
+- [HuggingFace MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-huggingface): Retrieve real-time HuggingFace model data
+- [Parallel MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-parallel): Real-time search with live data access
+- [Stripe MCP](https://docs.stripe.com/mcp): Automate invoicing processes
+- [Tavily MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-tavily): Build real-time research agents
+
+**Example Usage:**
+```curl
+curl -X POST "https://api.groq.com/openai/v1/responses" \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai/gpt-oss-120b",
+    "input": "What models are trending on Huggingface?",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "Huggingface",
+        "server_url": "https://huggingface.co/mcp"
+      }
+    ]
+  }'
+```
+
+[Learn more about MCP support on GroqCloud](https://console.groq.com/docs/mcp)
+
+
+
+
 ## 2025-09-05 (Python SDK v0.31.1, TypeScript SDK v0.32.0)
 
 ### [ADDED] Moonshot AI Kimi K2 Instruct 0905
