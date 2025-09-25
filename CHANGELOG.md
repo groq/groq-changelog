@@ -17,14 +17,17 @@ Groq's implementation is fully compatible with both the OpenAI Responses API and
 
 **Supported Models:**
 Remote MCP is available on all models that support [tool use](https://console.groq.com/docs/tool-use), such as:
-- GPT-OSS-120B and GPT-OSS-20B
-- Kimi K2 0905
-- Qwen 3 32B
-- Llama 4 Maverick and Llama 4 Scout
-- Llama 3.3 70B and Llama 3.1 8B
+- `openai/gpt-oss-20b`
+- `openai/gpt-oss-120b`
+- `moonshotai/kimi-k2-instruct-0905`
+- `qwen/qwen3-32b`
+- `meta-llama/llama-4-maverick-17b-128e-instruct`
+- `meta-llama/llama-4-scout-17b-16e-instruct`
+- `llama-3.3-70b-versatile`
+- `llama-3.1-8b-instant`
 
-**Cookbook Partners:**
-Get started with ready-to-use tutorials from our MCP partners:
+**Tutorials to get started with MCP:**
+Learn how to easily integrate various MCP servers and their available tools, such as web search, into your applications with Groq API with these tutorials from our launch partners:
 
 - [BrowserBase MCP](https://github.com/groq/groq-api-cookbook/blob/main/tutorials/mcp-browserbase): Web automation using natural language commands
 - [Browser Use MCP](https://github.com/groq/groq-api-cookbook/tree/main/tutorials/mcp-browseruse): Autonomous website browsing and interaction
