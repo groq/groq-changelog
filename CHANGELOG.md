@@ -1,6 +1,50 @@
 # Groq Changelog
 
 
+## 2025-12-01 (Python SDK v0.37.0, TypeScript SDK v0.37.0)
+
+### [ADDED] MCP Connectors (Beta)
+
+[MCP Connectors](https://console.groq.com/docs/tool-use/remote-mcp/connectors) provide a streamlined way to integrate with popular business applications without needing to build custom MCP servers. Groq now supports Google Workspace connectors, giving you instant access to Gmail, Google Calendar, and Google Drive through pre-built integrations using Model Context Protocol (MCP).
+
+**Available Connectors:**
+- [**Gmail**](https://console.groq.com/docs/tool-use/remote-mcp/connectors#gmail-example) - Read and search emails
+- [**Google Calendar**](https://console.groq.com/docs/tool-use/remote-mcp/connectors#google-calendar-example) - View calendar events
+- [**Google Drive**](https://console.groq.com/docs/tool-use/remote-mcp/connectors#google-drive-example) - Search and access files and documents
+
+**Key Features:**
+- **Zero configuration** - Pre-built connectors eliminate the need for custom MCP server development
+- **OAuth 2.0 authentication** - Secure access to Google Workspace services
+- **OpenAI Responses API compatible** - Works seamlessly with existing Responses API workflows
+
+**Available Tools by Connector:**
+- **Gmail**: `get_profile`, `search_emails`, `get_recent_emails`, `read_email`
+- **Google Calendar**: `get_profile`, `search`, `search_events`, `read_event`
+- **Google Drive**: `get_profile`, `search`, `recent_documents`, `fetch`
+
+**Example Usage:**
+```curl
+curl https://api.groq.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -d '{
+    "model": "openai/gpt-oss-120b",
+    "tools": [{
+      "type": "mcp",
+      "server_label": "Gmail",
+      "connector_id": "connector_gmail",
+      "authorization": "ya29.A0AR3da...",
+      "require_approval": "never"
+    }],
+    "input": "Show me unread emails from this week"
+  }'
+```
+
+Learn more about [MCP Connectors](https://console.groq.com/docs/tool-use/remote-mcp/connectors) and [Remote MCP](https://console.groq.com/docs/tool-use/remote-mcp) on Groq.
+
+MCP Connectors are currently in beta. Share your feedback in the [Community](https://community.groq.com).
+
+
 ## 2025-10-29 (Python SDK v0.33.0, TypeScript SDK v0.34.0)
 
 ### [ADDED] OpenAI GPT-OSS-Safeguard 20B
