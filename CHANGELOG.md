@@ -1,6 +1,56 @@
 # Groq Changelog
 
 
+## 2026-04-18 (Python SDK v1.2.0, TypeScript SDK v1.1.2)
+
+### [ADDED] MiniMax M2.5 and Qwen3-VL 32B Instruct (Enterprise)
+
+`minimaxai/minimax-m2.5` and `qwen/qwen3-vl-32b-instruct` are now available on GroqCloud for Enterprise customers.
+
+- [`minimaxai/minimax-m2.5`](https://console.groq.com/docs/model/minimaxai/minimax-m2.5) — MiniMax's latest general-purpose model, available for Enterprise workloads.
+- [`qwen/qwen3-vl-32b-instruct`](https://console.groq.com/docs/model/qwen/qwen3-vl-32b-instruct) — Qwen 3 VL Instruct (32B), a vision-language model for multimodal Enterprise use cases.
+
+Reach out to your Groq account team for access.
+
+
+### [ADDED] New Voices for Orpheus Arabic Saudi
+
+Two new voices are available for [`canopylabs/orpheus-arabic-saudi`](https://console.groq.com/docs/model/canopylabs/orpheus-arabic-saudi):
+
+- **Abdullah** — now the default voice
+- **Aisha**
+
+The Arabic Saudi model now supports six voices total: Abdullah, Fahad, Sultan, Lulwa, Noura, and Aisha. Audio samples and example usage are available on the [Orpheus TTS docs](https://console.groq.com/docs/text-to-speech/orpheus).
+
+
+### [CHANGED] Python SDK v1.2.0 and TypeScript SDK v1.1.2
+
+Following the [v1.0.0 GA in December 2025](https://github.com/groq/groq-python/releases/tag/v1.0.0), both SDKs received a series of updates over Q1.
+
+**Python SDK** ([v1.2.0](https://github.com/groq/groq-python/releases/tag/v1.2.0))
+- **v1.2.0** — Preserve hardcoded query params when merging with user params; ensure file data is sent as a single parameter; multipart request file-copy performance improvements; indices array format for query and form serialization.
+- **v1.1.2** — Sanitize endpoint path params; do not pass `by_alias` to Pydantic unless explicitly set; bumped minimum `typing-extensions`.
+- **v1.1.0** — Added support for binary request streaming and a custom JSON encoder for extended type support; deprecated Python 3.9.
+
+**TypeScript SDK** ([v1.1.2](https://github.com/groq/groq-typescript/releases/tag/v1.1.2))
+- **v1.1.1** — Restored streaming support in `defaultParseResponse`; fixed an abort-signal memory leak and avoided removing abort listeners too early; preserve URL params already embedded in path; pinned patched `minimatch` versions to address CVE-2026-27….
+- **v1.1.2** — GitHub Actions OIDC token migration; dependency updates.
+
+
+## 2026-01-30 (Python SDK v1.0.0, TypeScript SDK v1.1.0)
+
+### [CHANGED] Platform-wide Migration from PlayAI to Orpheus TTS
+
+Following the December 2025 deprecation announcement for `playai-tts` and `playai-tts-arabic`, text-to-speech has been migrated platform-wide to the [Orpheus](https://console.groq.com/docs/text-to-speech/orpheus) models from Canopy Labs. The newer Orpheus models deliver enhanced expressiveness with vocal direction controls, faster inference, and improved audio quality.
+
+[Groq Chat](https://chat.groq.com) is now using Orpheus, with the following voices available in chat settings:
+
+- **English** ([`canopylabs/orpheus-v1-english`](https://console.groq.com/docs/model/canopylabs/orpheus-v1-english)) — autumn, diana, hannah, austin, daniel, troy
+- **Arabic** ([`canopylabs/orpheus-arabic-saudi`](https://console.groq.com/docs/model/canopylabs/orpheus-arabic-saudi)) — fahad, sultan, lulwa, noura
+
+If you are still using `playai-tts` or `playai-tts-arabic` directly, migrate to the Orpheus replacements before the shutdown date listed on the [deprecations page](https://console.groq.com/docs/deprecations).
+
+
 ## 2025-12-01 (Python SDK v0.37.0, TypeScript SDK v0.37.0)
 
 ### [ADDED] MCP Connectors (Beta)
