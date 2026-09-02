@@ -1,6 +1,13 @@
 # Groq Changelog
 
 
+## 2026-09-02
+
+### [CHANGED] Batch API Checks Model Access at Validation
+
+A batch that names a model your organization cannot use now fails at validation, before any request runs. The batch ends with `status: "failed"` and `request_counts.total: 0`. The `errors.data[]` array has one entry per denied model with the same `code` and `message` the synchronous API returns for that model (`model_not_found`, `model_decommissioned`, `model_terms_required`, `model_permission_blocked_org`, or `model_permission_blocked_project`), `param: "body.model"`, and the `line` of the first request that uses the model. Before this change, such a batch moved to `in_progress` and every request failed with a 404 in the error file. See the [Batch API docs](https://console.groq.com/docs/batch).
+
+
 ## 2026-04-18 (Python SDK v1.2.0, TypeScript SDK v1.1.2)
 
 ### [ADDED] MiniMax M2.5 and Qwen3-VL 32B Instruct (Enterprise)
