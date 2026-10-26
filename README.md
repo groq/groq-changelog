@@ -7,7 +7,7 @@ This repo contains a chronological record (newest first) of changes to Groq API 
 ## How to Subscribe to Updates
 1. **Watch this repo**: Click the "Watch" button at the top-right of this page to receive notifications when we push updates
 2. **Star this repo**: Star to bookmark for later
-3. **RSS this Repo**: Subcribe via GitHub's RSS feed
+3. **RSS this Repo**: Subscribe via GitHub's RSS feed
 
 ## What We Track (Categorized by Type)
 - **Added**: New features, models, or capabilities
