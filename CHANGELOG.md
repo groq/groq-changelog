@@ -1,6 +1,82 @@
 # Groq Changelog
 
 
+## 2026-09-21 (Python SDK v1.7.0, TypeScript SDK v1.6.0)
+
+### [DEPRECATED] Qwen 3.6 27B
+
+`qwen/qwen3.6-27b` is deprecated, with a shutdown date of **September 14, 2026**. We recommend migrating to [`qwen/qwen3.8-27b`](https://console.groq.com/docs/model/qwen/qwen3.8-27b), the direct successor: a 27B multimodal model with the same 131K-token context window, thinking and instruct modes, tunable reasoning effort, tool use, and JSON mode. This deprecation applies to free and developer-tier usage; enterprise customers with a committed-spend contract are not affected. See the [deprecations page](https://console.groq.com/docs/deprecations) for details.
+
+
+### [REMOVED] Compound and Compound Mini
+
+On August 24, 2026, we announced the deprecation of `groq/compound` and `groq/compound-mini`. Both systems were decommissioned on September 21, 2026, and requests to these model IDs now return errors. Historical overviews remain available for [Compound](https://console.groq.com/docs/compound/systems/compound) and [Compound Mini](https://console.groq.com/docs/compound/systems/compound-mini), along with the [Compound changelog](https://console.groq.com/docs/changelog/compound). See the [deprecations page](https://console.groq.com/docs/deprecations) for details.
+
+
+### [CHANGED] Batch API Checks Model Access at Validation
+
+A batch that names a model your organization cannot use now fails at validation, before any request runs. The batch ends with `status: "failed"` and `request_counts.total: 0`. The `errors.data[]` array has one entry per denied model with the same `code` and `message` the synchronous API returns for that model (`model_not_found`, `model_decommissioned`, `model_terms_required`, `model_permission_blocked_org`, or `model_permission_blocked_project`), `param: "body.model"`, and the `line` of the first request that uses the model. Before this change, such a batch moved to `in_progress` and every request failed with a 404 in the error file. See the [Batch API docs](https://console.groq.com/docs/batch).
+
+
+### [CHANGED] Python SDK v1.7.0 and TypeScript SDK v1.6.0
+
+**Python SDK** ([v1.7.0](https://github.com/groq/groq-python/releases/tag/v1.7.0))
+- **v1.7.0** — Qwen 3.8 reasoning guidance for chat completions; dependency lock-file updates for known vulnerabilities.
+
+**TypeScript SDK** ([v1.6.0](https://github.com/groq/groq-typescript/releases/tag/v1.6.0))
+- **v1.6.0** — Qwen 3.8 reasoning guidance for chat completions.
+
+
+## 2026-08-10 (Python SDK v1.6.0, TypeScript SDK v1.5.0)
+
+### [ADDED] MiniMax M2.7 (Enterprise)
+
+[`minimaxai/minimax-m2.7`](https://console.groq.com/docs/model/minimaxai/minimax-m2.7) is now available on GroqCloud for Enterprise customers. MiniMax M2.7 is a 229-billion-parameter Mixture-of-Experts model (~10B active per token) with interleaved thinking, built for agentic workflows, tool use, and coding, with a 196K-token context window on Groq. [Contact sales](https://groq.com/enterprise-access) for access.
+
+
+### [ADDED] Qwen 3.6 27B
+
+[`qwen/qwen3.6-27b`](https://console.groq.com/docs/model/qwen/qwen3.6-27b) is now available on GroqCloud. Qwen 3.6 27B is a 27-billion-parameter multimodal (vision + text) model with flagship-level agentic coding and reasoning. It supports switching between thinking mode (for complex reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue) within a single model, with a 131K-token context window on Groq.
+
+
+### [ADDED] Input and Output Token Rate Limits (ITPM / OTPM)
+
+In addition to the combined TPM limit, organizations can now be subject to separate per-minute limits on input tokens (ITPM) and output tokens (OTPM). If these limits are configured on your account, your TPM value on the [Limits page](https://console.groq.com/settings/limits) shows an **"X in / Y out"** breakdown on hover. See the [rate limits docs](https://console.groq.com/docs/rate-limits) for details.
+
+
+### [DEPRECATED] Llama 3.1 8B Instant and Llama 3.3 70B Versatile
+
+On June 17, 2026, we announced the deprecation of `llama-3.1-8b-instant` and `llama-3.3-70b-versatile`, with a shutdown date of **August 16, 2026**. We recommend migrating to [`openai/gpt-oss-20b`](https://console.groq.com/docs/model/openai/gpt-oss-20b) (for Llama 3.1 8B Instant) and [`openai/gpt-oss-120b`](https://console.groq.com/docs/model/openai/gpt-oss-120b) (for Llama 3.3 70B Versatile) before the shutdown date. This deprecation applies to free and developer-tier usage; enterprise customers with a committed-spend contract are not affected. See the [deprecations page](https://console.groq.com/docs/deprecations) for details.
+
+
+### [REMOVED] Qwen 3 32B and Llama 4 Scout 17B
+
+`qwen/qwen3-32b` and `meta-llama/llama-4-scout-17b-16e-instruct` were shut down on July 17, 2026, following the June 17, 2026 deprecation announcement. The recommended replacement for both is [`openai/gpt-oss-120b`](https://console.groq.com/docs/model/openai/gpt-oss-120b). This applies to free and developer-tier usage; enterprise customers with a committed-spend contract are not affected. See the [deprecations page](https://console.groq.com/docs/deprecations) for details.
+
+
+### [REMOVED] Compound browser_automation Tool
+
+The built-in `browser_automation` tool for [Compound](https://console.groq.com/docs/compound/systems/compound) systems has been retired. To automate full browser sessions, use the [Anchor Browser integration](https://console.groq.com/docs/anchorbrowser). Compound itself was decommissioned on September 21, 2026; see the September 2026 section above.
+
+
+### [CHANGED] Python SDK v1.6.0 and TypeScript SDK v1.5.0
+
+Both SDKs received a series of updates over Q2.
+
+**Python SDK** ([v1.6.0](https://github.com/groq/groq-python/releases/tag/v1.6.0))
+- **v1.3.0** — Support for setting headers via environment variables; fixed field name format for multipart file arrays.
+- **v1.4.0** — Support for eagerly validating pydantic iterators.
+- **v1.5.0** — API spec updates.
+- **v1.6.0** — CI and workflow template updates.
+
+**TypeScript SDK** ([v1.5.0](https://github.com/groq/groq-typescript/releases/tag/v1.5.0))
+- **v1.2.0** — Support for setting headers via environment variables.
+- **v1.2.1** — Upgraded `tsc-multi` for Node 26 compatibility.
+- **v1.3.0** — API spec updates; send content-type header for requests with an omitted optional body.
+- **v1.4.0 / v1.4.1** — CI workflows run on Node 24; dependency updates.
+- **v1.5.0** — API spec updates.
+
+
 ## 2026-04-18 (Python SDK v1.2.0, TypeScript SDK v1.1.2)
 
 ### [ADDED] MiniMax M2.5 and Qwen3-VL 32B Instruct (Enterprise)
